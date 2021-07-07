@@ -10,6 +10,8 @@ VARIABLES
 @mainfont: 'Open Sans', sans-serif;
 @black: #000000;
 @white: #ffffff;
+@bluewordpress: #2271b1;
+@hoverwordpress: #135e96;
 
 /* --------------------------------------------------------------
 BODY DEFAULTS
@@ -51,6 +53,7 @@ BODY DEFAULTS
 .custom-metaboxes-table {
     width: 100%;
     padding: 1rem;
+    padding-left: .5rem;
     box-sizing: border-box;
 
     & .custom-metaboxes-table-item {
@@ -62,6 +65,21 @@ BODY DEFAULTS
 
         & input {
             flex: 0 0 60%;
+        }
+
+        & .map-selector {
+            cursor: pointer;
+            background: @bluewordpress;
+            color: @white;
+            border: 0;
+            border-radius: 2px;
+            padding: 5px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+
+            &:hover {
+                background: @hoverwordpress;
+            }
         }
     }
 }

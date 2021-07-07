@@ -37,22 +37,22 @@ class WooShipLocationMetabox extends WooShipLocation
 <div class="custom-metaboxes-table">
     <div class="custom-metaboxes-table-item">
         <?php $min_distance = get_post_meta($post->ID, 'min_distance', true); ?>
-        <label for="min_distance" class="custom-label-attributes"><?php _e('Minimun Distance (in km)', parent::PLUGIN_LANG) ?></label>
+        <label for="min_distance" class="custom-label-attributes"><span class="dashicons dashicons-remove"></span> <?php _e('Minimun Distance (in km)', parent::PLUGIN_LANG) ?></label>
         <input class="custom-input-attributes" type="number" name="min_distance" id="min_distance" value="<?php echo $min_distance; ?>" />
     </div>
     <div class="custom-metaboxes-table-item">
         <?php $max_distance = get_post_meta($post->ID, 'max_distance', true); ?>
-        <label for="max_distance" class="custom-label-attributes"><?php _e('Maximum Distance (in km)', parent::PLUGIN_LANG) ?></label>
+        <label for="max_distance" class="custom-label-attributes"><span class="dashicons dashicons-insert"></span> <?php _e('Maximum Distance (in km)', parent::PLUGIN_LANG) ?></label>
         <input class="custom-input-attributes" type="number" name="max_distance" id="max_distance" value="<?php echo $max_distance; ?>" />
     </div>
     <div class="custom-metaboxes-table-item">
         <?php $email_address = get_post_meta($post->ID, 'email_address', true); ?>
-        <label for="email_address" class="custom-label-attributes"><?php _e('Email Address', parent::PLUGIN_LANG) ?></label>
+        <label for="email_address" class="custom-label-attributes"><span class="dashicons dashicons-email"></span> <?php _e('Email Address', parent::PLUGIN_LANG) ?></label>
         <input class="custom-input-attributes" type="email" name="email_address" id="email_address" value="<?php echo $email_address; ?>" />
     </div>
     <div class="custom-metaboxes-table-item">
         <?php $coordinates = get_post_meta($post->ID, 'min_distance', true); ?>
-        <label for="coordinates" class="custom-label-attributes"><?php _e('Coordinates (in Google Maps)', parent::PLUGIN_LANG) ?></label>
+        <label for="coordinates" class="custom-label-attributes"><span class="dashicons dashicons-location"></span> <?php _e('Coordinates (in Google Maps)', parent::PLUGIN_LANG) ?> <button id="mapSelector" class="map-selector" title="<?php _e('Select coordinates using google maps', parent::PLUGIN_LANG); ?>"><span class="dashicons dashicons-location"></span></button></label>
         <input class="custom-input-attributes" type="text" name="coordinates" id="coordinates" placeholder="<?php _e('E.G. 25.7825452,-80.2996705', parent::PLUGIN_LANG); ?>" value="<?php echo $coordinates; ?>" />
     </div>
 </div>
