@@ -72,3 +72,5 @@ class WooShipLocationCPT extends WooShipLocation
         register_post_type('location', $args);
     }
 }
+
+new WooShipLocationCPT;
