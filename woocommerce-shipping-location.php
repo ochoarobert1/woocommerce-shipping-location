@@ -18,15 +18,26 @@ defined( 'ABSPATH' ) || exit;
 
 class WooShipLocation 
 {
-
-    const THEME_LANG = 'woocommerce-shipping-location';
-    const THEME_SLUG = 'woo_ship_location';
+    const PLUGIN_LANG = 'woocommerce-shipping-location';
+    const PLUGIN_VERSION = '1.0.0';
 
     public function __construct() {
-        
+        add_action( 'admin_enqueue_scripts', array($this, 'admin_scripts'), 99 );
+        add_action( 'wp_enqueue_scripts', array($this, 'public_scripts'), 99 );
+    }
+
+    public function admin_scripts() {
+        wp_enqueue_script( 'woo-location-admin-functions', plugins_url( '/js/woo-location-admin-functions.js', __FILE__ ), ['jquery'], self::PLUGIN_VERSION, true );
+        wp_enqueue_style( 'woo-location-admin-styles', plugins_url( '/css/woo-location-admin-styles.css', __FILE__ ), [], self::PLUGIN_VERSION, 'all' );
+    }
+
+    public function public_scripts() {
+        wp_enqueue_script( 'woo-location-public-functions', plugins_url( '/js/woo-location-public-functions.js', __FILE__ ), ['jquery'], self::PLUGIN_VERSION, true );
+        wp_enqueue_style( 'woo-location-public-styles', plugins_url( '/css/woo-location-public-styles.css', __FILE__ ), [], self::PLUGIN_VERSION, 'all' );
     }
 }
 
 require_once('includes/custom-post-type.php');
+require_once('includes/custom-metaboxes.php');
 
 new WooShipLocation;

@@ -1,0 +1,71 @@
+// compress: true, javascriptEnabled: true
+/* --------------------------------------------------------------
+/* MAIN LESS MIXINS AND FUNCTIONS - LESSHAT
+-------------------------------------------------------------- */
+@import 'less/_lesshat.less';
+/* --------------------------------------------------------------
+VARIABLES
+-------------------------------------------------------------- */
+
+@mainfont: 'Open Sans', sans-serif;
+@black: #000000;
+@white: #ffffff;
+
+/* --------------------------------------------------------------
+BODY DEFAULTS
+-------------------------------------------------------------- */
+
+/* LOADER */
+.loader {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.loader:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid @black;
+    border-color: @black transparent @black transparent;
+    animation: loader-spin 1.2s linear infinite;
+}
+
+@keyframes loader-spin {
+    0% {
+        .transform(rotate(0deg));
+    }
+
+    100% {
+        .transform(rotate(360deg));
+    }
+}
+
+/* --------------------------------------------------------------
+1.- METABOXES
+-------------------------------------------------------------- */
+
+.custom-metaboxes-table {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    & .custom-metaboxes-table-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+
+        & input {
+            flex: 0 0 60%;
+        }
+    }
+}
+
+/* --------------------------------------------------------------
+2.- MEDIAQUERIES
+-------------------------------------------------------------- */
