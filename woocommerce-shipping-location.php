@@ -14,30 +14,44 @@
  * @package WooShipLocation
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
-class WooShipLocation 
+class WooShipLocation
 {
     const PLUGIN_LANG = 'woocommerce-shipping-location';
+    const PLUGIN_SLUG = 'woo-location';
     const PLUGIN_VERSION = '1.0.0';
 
-    public function __construct() {
-        add_action( 'admin_enqueue_scripts', array($this, 'admin_scripts'), 99 );
-        add_action( 'wp_enqueue_scripts', array($this, 'public_scripts'), 99 );
+    public function __construct()
+    {
+        add_action('admin_enqueue_scripts', array($this, 'admin_scripts'), 99);
+        add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 99);
     }
 
-    public function admin_scripts() {
-        wp_enqueue_script( 'woo-location-admin-functions', plugins_url( '/js/woo-location-admin-functions.js', __FILE__ ), ['jquery'], self::PLUGIN_VERSION, true );
-        wp_enqueue_style( 'woo-location-admin-styles', plugins_url( '/css/woo-location-admin-styles.css', __FILE__ ), [], self::PLUGIN_VERSION, 'all' );
+    public function admin_scripts()
+    {
+        wp_enqueue_script('woo-location-admin-functions', plugins_url('/js/woo-location-admin-functions.js', __FILE__), ['jquery'], self::PLUGIN_VERSION, true);
+        wp_enqueue_style('woo-location-admin-styles', plugins_url('/css/woo-location-admin-styles.css', __FILE__), [], self::PLUGIN_VERSION, 'all');
+        $maps_apikey = get_option('wooshiplocation_maps_apikey');
+
+        if ($maps_apikey != '') {
+            wp_enqueue_script('woo-location-google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . $maps_apikey, ['jquery', 'woo-location-admin-functions'], null, true);
+            wp_localize_script('woo-location-admin-functions', 'custom_admin_url', array(
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'woo_location_apikey' => $maps_apikey
+            ));
+        }
     }
 
-    public function public_scripts() {
-        wp_enqueue_script( 'woo-location-public-functions', plugins_url( '/js/woo-location-public-functions.js', __FILE__ ), ['jquery'], self::PLUGIN_VERSION, true );
-        wp_enqueue_style( 'woo-location-public-styles', plugins_url( '/css/woo-location-public-styles.css', __FILE__ ), [], self::PLUGIN_VERSION, 'all' );
+    public function public_scripts()
+    {
+        wp_enqueue_script('woo-location-public-functions', plugins_url('/js/woo-location-public-functions.js', __FILE__), ['jquery'], self::PLUGIN_VERSION, true);
+        wp_enqueue_style('woo-location-public-styles', plugins_url('/css/woo-location-public-styles.css', __FILE__), [], self::PLUGIN_VERSION, 'all');
     }
 }
 
 require_once('includes/custom-post-type.php');
 require_once('includes/custom-metaboxes.php');
+require_once('includes/custom-woocommerce-admin.php');
 
 new WooShipLocation;

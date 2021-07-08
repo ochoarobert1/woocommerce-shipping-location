@@ -50,11 +50,23 @@ class WooShipLocationMetabox extends WooShipLocation
         <label for="email_address" class="custom-label-attributes"><span class="dashicons dashicons-email"></span> <?php _e('Email Address', parent::PLUGIN_LANG) ?></label>
         <input class="custom-input-attributes" type="email" name="email_address" id="email_address" value="<?php echo $email_address; ?>" />
     </div>
+    <?php $maps_apikey = get_option('wooshiplocation_maps_apikey'); ?>
+    <?php if ($maps_apikey != '') { ?>
     <div class="custom-metaboxes-table-item">
         <?php $coordinates = get_post_meta($post->ID, 'min_distance', true); ?>
-        <label for="coordinates" class="custom-label-attributes"><span class="dashicons dashicons-location"></span> <?php _e('Coordinates (in Google Maps)', parent::PLUGIN_LANG) ?> <button id="mapSelector" class="map-selector" title="<?php _e('Select coordinates using google maps', parent::PLUGIN_LANG); ?>"><span class="dashicons dashicons-location"></span></button></label>
+        <label for="coordinates" class="custom-label-attributes"><span class="dashicons dashicons-location"></span> <?php _e('Coordinates (in Google Maps)', parent::PLUGIN_LANG) ?> <?php if ($maps_apikey != '') { ?><button id="mapSelector" class="map-selector" title="<?php _e('Select coordinates using google maps', parent::PLUGIN_LANG); ?>"><span class="dashicons dashicons-location"></span></button><?php } ?></label>
         <input class="custom-input-attributes" type="text" name="coordinates" id="coordinates" placeholder="<?php _e('E.G. 25.7825452,-80.2996705', parent::PLUGIN_LANG); ?>" value="<?php echo $coordinates; ?>" />
     </div>
+    <div id="mapsContainer" class="custom-metaboxes-table-item custom-metaboxes-hidden">
+        <div id="map_canvas" style="width: 100%; height: 500px;"></div>
+    </div>
+    <?php } else { ?>
+    <div class="custom-metaboxes-table-item">
+        <?php $coordinates = get_post_meta($post->ID, 'min_distance', true); ?>
+        <label for="coordinates" class="custom-label-attributes"><span class="dashicons dashicons-location"></span> <?php _e('Coordinates (in Google Maps)', parent::PLUGIN_LANG) ?></label>
+        <span class="custom-label-attributes"><?php _e('Please configure the APIKey for Google Maps in order to add coordinates', parent::PLUGIN_LANG); ?></span>
+    </div>
+    <?php } ?>
 </div>
 <?php
     }
