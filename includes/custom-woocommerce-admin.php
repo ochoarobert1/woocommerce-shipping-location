@@ -50,6 +50,12 @@ class WC_woo_shipping_settings extends WooShipLocation
                 'desc' => __('Add the Google Maps APIKey in order to use it into this custom shipping method', parent::PLUGIN_LANG),
                 'type' => 'text'
            ),
+           'maps_coordinates' => array(
+                'id'   => 'wooshiplocation_maps_coordinates',
+                'name' => __('Business Coordinates', parent::PLUGIN_LANG),
+                'desc' => __('Add the coordinates of this business to center this custom map handler', parent::PLUGIN_LANG),
+                'type' => 'text'
+            ),
            'section_end' => array(
                 'id' => 'wc_woo_shipping_settings_section_end',
                 'type' => 'sectionend'

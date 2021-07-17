@@ -53,7 +53,7 @@ class WooShipLocationMetabox extends WooShipLocation
     <?php $maps_apikey = get_option('wooshiplocation_maps_apikey'); ?>
     <?php if ($maps_apikey != '') { ?>
     <div class="custom-metaboxes-table-item">
-        <?php $coordinates = get_post_meta($post->ID, 'min_distance', true); ?>
+        <?php $coordinates = get_post_meta($post->ID, 'coordinates', true); ?>
         <label for="coordinates" class="custom-label-attributes"><span class="dashicons dashicons-location"></span> <?php _e('Coordinates (in Google Maps)', parent::PLUGIN_LANG) ?> <?php if ($maps_apikey != '') { ?><button id="mapSelector" class="map-selector" title="<?php _e('Select coordinates using google maps', parent::PLUGIN_LANG); ?>"><span class="dashicons dashicons-location"></span></button><?php } ?></label>
         <input class="custom-input-attributes" type="text" name="coordinates" id="coordinates" placeholder="<?php _e('E.G. 25.7825452,-80.2996705', parent::PLUGIN_LANG); ?>" value="<?php echo $coordinates; ?>" />
     </div>
@@ -62,7 +62,7 @@ class WooShipLocationMetabox extends WooShipLocation
     </div>
     <?php } else { ?>
     <div class="custom-metaboxes-table-item">
-        <?php $coordinates = get_post_meta($post->ID, 'min_distance', true); ?>
+        <?php $coordinates = get_post_meta($post->ID, 'coordinates', true); ?>
         <label for="coordinates" class="custom-label-attributes"><span class="dashicons dashicons-location"></span> <?php _e('Coordinates (in Google Maps)', parent::PLUGIN_LANG) ?></label>
         <span class="custom-label-attributes"><?php _e('Please configure the APIKey for Google Maps in order to add coordinates', parent::PLUGIN_LANG); ?></span>
     </div>
