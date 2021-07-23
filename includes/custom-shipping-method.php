@@ -81,6 +81,8 @@ function location_shipping_method()
                         'id'      => $this->id,
                         'label'   => $intance_settings['title'],
                         'cost'    => $intance_settings['cost'],
+                        'fee'     => $intance_settings['cost'],
+                        'minimum_fee'    => $intance_settings['cost'],
                         'package' => $package,
                         'taxes'   => false,
                     )

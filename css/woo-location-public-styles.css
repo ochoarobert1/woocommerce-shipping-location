@@ -69,3 +69,28 @@ a:hover {
 .custom-metaboxes-hidden {
   display: none;
 }
+.cart-shipping th {
+  vertical-align: middle;
+}
+#mapsContainer {
+  margin-bottom: 1rem;
+}
+#mapsContainer h4 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+#select_coordinates {
+  width: 100%;
+  margin-top: 1rem;
+  background: #333333;
+  color: white;
+  font-size: 1.2rem;
+}
+#select_coordinates:hover {
+  background: #000000;
+  color: #ffffff;
+}
+#mapSelector {
+  margin-top: 1rem;
+}

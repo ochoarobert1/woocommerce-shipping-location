@@ -16,6 +16,8 @@
 
 defined('ABSPATH') || exit;
 
+require_once('vendor/autoload.php');
+
 class WooShipLocation
 {
     const PLUGIN_LANG = 'woocommerce-shipping-location';
@@ -27,6 +29,27 @@ class WooShipLocation
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'), 99);
         add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 99);
     }
+
+    /**
+     * Dump variables
+     */
+        
+    public function d()
+    {
+        call_user_func_array('dump', func_get_args());
+    }
+
+
+    /**
+     * Dump variables and die.
+     */
+
+    public function dd()
+    {
+        call_user_func_array('dump', func_get_args());
+        die();
+    }
+
 
     public function admin_scripts()
     {
