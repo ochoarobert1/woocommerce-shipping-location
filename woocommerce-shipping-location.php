@@ -6,7 +6,7 @@
  * Version: 1.0.0
  * Author: Robert Ochoa
  * Author URI: https://robertochoaweb.com
- * Text Domain: woocommerce-shipping-location
+ * Text Domain: woo_shipping_location
  * Domain Path: /languages/
  * Requires at least: 5.5
  * Requires PHP: 7.0
@@ -20,23 +20,25 @@ require_once('vendor/autoload.php');
 
 class WooShipLocation
 {
-    const PLUGIN_LANG = 'woocommerce-shipping-location';
+    /* PLUGIN CONSTANTS */
+    const PLUGIN_LANG = 'woo_shipping_location';
     const PLUGIN_SLUG = 'woo-location';
     const PLUGIN_VERSION = '1.0.0';
 
+    /* MAIN CONSTRUCT */
     public function __construct()
     {
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'), 99);
         add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 99);
-        add_filter( 'load_textdomain_mofile', array($this, 'plugin_textdomain'), 10, 2 );
+        add_action('plugins_loaded', array($this, 'plugin_textdomain'));
     }
 
-    function plugin_textdomain( $mofile, $domain ) {
-        if ( self::PLUGIN_LANG === $domain && false !== strpos( $mofile, WP_LANG_DIR . '/plugins/' ) ) {
-            $locale = apply_filters( 'plugin_locale', determine_locale(), $domain );
-            $mofile = WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) . '/languages/' . $domain . '-' . $locale . '.mo';
-        }
-        return $mofile;
+    /**
+    * Load Plugin Translation
+    */
+    public function plugin_textdomain()
+    {
+        load_plugin_textdomain(self::PLUGIN_LANG, false, dirname(plugin_basename(__FILE__)) . '/languages');
     }
 
     /**
@@ -57,6 +59,9 @@ class WooShipLocation
         die();
     }
 
+    /**
+    * Load Admin Scripts / Styles
+    */
     public function admin_scripts()
     {
         wp_enqueue_script('woo-location-admin-functions', plugins_url('/js/woo-location-admin-functions.js', __FILE__), ['jquery'], self::PLUGIN_VERSION, true);
@@ -75,6 +80,9 @@ class WooShipLocation
         }
     }
 
+    /**
+    * Load Public Scripts / Styles
+    */
     public function public_scripts()
     {
         wp_enqueue_script('woo-location-public-functions', plugins_url('/js/woo-location-public-functions.js', __FILE__), ['jquery'], self::PLUGIN_VERSION, true);
@@ -94,6 +102,7 @@ class WooShipLocation
     }
 }
 
+/* REQUIRE ADDITIONAL CLASSES */
 require_once('includes/custom-post-type.php');
 require_once('includes/custom-metaboxes.php');
 require_once('includes/custom-woocommerce-admin.php');

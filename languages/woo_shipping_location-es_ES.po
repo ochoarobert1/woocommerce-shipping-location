@@ -1,0 +1,271 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: WooCommerce Shipping by Location\n"
+"POT-Creation-Date: 2021-07-28 23:34-0400\n"
+"PO-Revision-Date: 2021-07-28 23:36-0400\n"
+"Language-Team: Robert Ochoa <ochoa.robert1@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: woocommerce-shipping-location.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: Robert Ochoa <ochoa.robert1@gmail.com>\n"
+"Language: es_ES\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: includes/custom-metaboxes.php:27
+msgid "Extra Information"
+msgstr "Información Adicional"
+
+#: includes/custom-metaboxes.php:40
+msgid "Minimun Distance (in km)"
+msgstr "Distancia mínima (en km)"
+
+#: includes/custom-metaboxes.php:45
+msgid "Maximum Distance (in km)"
+msgstr "Distancia máxima (en km)"
+
+#: includes/custom-metaboxes.php:50
+msgid "Email Address"
+msgstr "Dirección de correo electrónico"
+
+#: includes/custom-metaboxes.php:57 includes/custom-metaboxes.php:66
+msgid "Coordinates (in Google Maps)"
+msgstr "Coordenadas (en Google Maps)"
+
+#: includes/custom-metaboxes.php:57
+msgid "Select coordinates using google maps"
+msgstr "Selecciona coordenadas usando google maps"
+
+#: includes/custom-metaboxes.php:58
+msgid "E.G. 25.7825452,-80.2996705"
+msgstr "Por ejemplo, 25.7825452,-80.2996705"
+
+#: includes/custom-metaboxes.php:67
+msgid "Please configure the APIKey for Google Maps in order to add coordinates"
+msgstr ""
+"Configure por favor el APIKey para los mapas de Google para agregar "
+"coordenadas"
+
+#: includes/custom-post-type.php:24
+msgctxt "Post Type General Name"
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#: includes/custom-post-type.php:25
+msgctxt "Post Type Singular Name"
+msgid "Location"
+msgstr "Ubicación"
+
+#: includes/custom-post-type.php:26 includes/custom-post-type.php:27
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#: includes/custom-post-type.php:28
+msgid "Locations Archives"
+msgstr "Ubicaciones"
+
+#: includes/custom-post-type.php:29
+msgid "Location Attributes"
+msgstr "Atributos de Lugar"
+
+#: includes/custom-post-type.php:30
+msgid "Location Item:"
+msgstr "Elemento de ubicación:"
+
+#: includes/custom-post-type.php:31
+msgid "All Locations"
+msgstr "Todas las ubicaciones"
+
+#: includes/custom-post-type.php:32
+msgid "Add New Location"
+msgstr "Agregar Nueva Ubicación"
+
+#: includes/custom-post-type.php:33
+msgid "Add New"
+msgstr "Añadir nuevo"
+
+#: includes/custom-post-type.php:34
+msgid "New Location"
+msgstr "Nueva ubicación"
+
+#: includes/custom-post-type.php:35
+msgid "Edit Location"
+msgstr "Editar Ubicación"
+
+#: includes/custom-post-type.php:36
+msgid "Update Location"
+msgstr "Actualizar Ubicación"
+
+#: includes/custom-post-type.php:37
+msgid "View Location"
+msgstr "Ver Ubicación"
+
+#: includes/custom-post-type.php:38
+msgid "View Locations"
+msgstr "Ver ubicaciones"
+
+#: includes/custom-post-type.php:39
+msgid "Search Location"
+msgstr "Buscar Ubicación"
+
+#: includes/custom-post-type.php:40
+msgid "Not found"
+msgstr "No encontrado"
+
+#: includes/custom-post-type.php:41
+msgid "Not found in Trash"
+msgstr "No encontrado en la papelera"
+
+#: includes/custom-post-type.php:42
+msgid "Featured Image"
+msgstr "Imagen destacada"
+
+#: includes/custom-post-type.php:43
+msgid "Set featured image"
+msgstr "Establecer imagen destacada"
+
+#: includes/custom-post-type.php:44
+msgid "Remove featured image"
+msgstr "Eliminar la imagen destacada"
+
+#: includes/custom-post-type.php:45
+msgid "Use as featured image"
+msgstr "Usar como imagen destacada"
+
+#: includes/custom-post-type.php:46
+msgid "Insert into Location"
+msgstr "Insertar en la ubicación"
+
+#: includes/custom-post-type.php:47
+msgid "Uploaded to this Location"
+msgstr "Actualizar localización"
+
+#: includes/custom-post-type.php:48
+msgid "Locations list"
+msgstr "Lista de ubicaciones"
+
+#: includes/custom-post-type.php:49
+msgid "Locations list navigation"
+msgstr "Navegación de la lista de ubicaciones"
+
+#: includes/custom-post-type.php:50
+msgid "Filter Locations list"
+msgstr "Lista de ubicaciones de filtro"
+
+#: includes/custom-post-type.php:53
+msgid "Location"
+msgstr "Ubicación"
+
+#: includes/custom-post-type.php:54
+msgid "Locations for this business"
+msgstr "Ubicaciones para este negocio"
+
+#: includes/custom-shipping-method.php:26
+#: includes/custom-shipping-method.php:34
+#: includes/custom-woocommerce-admin.php:24
+msgid "Shipping by Location"
+msgstr "Envío por ubicación"
+
+#: includes/custom-shipping-method.php:27
+msgid "Delivery by Selected Location"
+msgstr "Entrega por ubicación seleccionada"
+
+#: includes/custom-shipping-method.php:56
+msgid "Title"
+msgstr "Título"
+
+#: includes/custom-shipping-method.php:58
+msgid "Title to be display on site"
+msgstr "Título que se mostrará en el lugar"
+
+#: includes/custom-shipping-method.php:59
+msgid "Shipping by Location "
+msgstr "Envío por ubicación "
+
+#: includes/custom-shipping-method.php:63
+msgid "Minimum Cost (2 km)"
+msgstr "Costo mínimo (2 km)"
+
+#: includes/custom-shipping-method.php:65
+msgid "Minimum Cost of shipping"
+msgstr "Costo mínimo de envío"
+
+#: includes/custom-woocommerce-admin.php:43
+msgid "Location Settings"
+msgstr "Configuraciones de Lugar"
+
+#: includes/custom-woocommerce-admin.php:49
+msgid "Google Maps APIKey"
+msgstr "Google Maps APIKey"
+
+#: includes/custom-woocommerce-admin.php:50
+msgid ""
+"Add the Google Maps APIKey in order to use it into this custom shipping "
+"method"
+msgstr ""
+"Agregue la APIKey de Google Maps para usarla en este método de envío "
+"personalizado"
+
+#: includes/custom-woocommerce-admin.php:55
+msgid "Business Coordinates"
+msgstr "Coordenadas de negocio"
+
+#: includes/custom-woocommerce-admin.php:56
+msgid "Add the coordinates of this business to center this custom map handler"
+msgstr ""
+"Agregar las coordenadas de este negocio para centrar este controlador de "
+"mapa personalizado"
+
+#: includes/custom-woocommerce-public.php:50
+msgid "Select Location"
+msgstr "Seleccionar ubicación"
+
+#: includes/custom-woocommerce-public.php:60
+msgid "Select your current position"
+msgstr "Seleccione su posición actual"
+
+#: includes/custom-woocommerce-public.php:64
+msgid "Calculate Shipping"
+msgstr "Calcular costo de envío"
+
+#: includes/custom-woocommerce-public.php:222
+msgid "Subsidized shipping fee"
+msgstr "Tarifa de envío subsidiada"
+
+#: includes/custom-woocommerce-public.php:224
+msgid "Flat rate shipping fee"
+msgstr "Tarifa plana de gastos de envío"
+
+#: includes/custom-woocommerce-public.php:296
+msgid "Dirección de Entrega"
+msgstr "Dirección de Entrega"
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Shipping by Location"
+msgstr "Envío de WooCommerce por ubicación"
+
+#. Plugin URI of the plugin/theme
+msgid "https://robertochoaweb.com/"
+msgstr "https://robertochoaweb.com/"
+
+#. Description of the plugin/theme
+msgid "Plugin for Locations and Shipping Overrides"
+msgstr "Plugin para ubicaciones y anulaciones de envío"
+
+#. Author of the plugin/theme
+msgid "Robert Ochoa"
+msgstr "Roberto Ochoa"
+
+#. Author URI of the plugin/theme
+msgid "https://robertochoaweb.com"
+msgstr "https://robertochoaweb.com"
