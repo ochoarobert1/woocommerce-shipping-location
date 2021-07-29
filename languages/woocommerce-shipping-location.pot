@@ -1,0 +1,265 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: WooCommerce Shipping by Location\n"
+"POT-Creation-Date: 2021-07-28 23:34-0400\n"
+"PO-Revision-Date: 2021-07-28 23:34-0400\n"
+"Last-Translator: Robert Ochoa <ochoa.robert1@gmail.com>\n"
+"Language-Team: Robert Ochoa <ochoa.robert1@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: woocommerce-shipping-location.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: includes/custom-metaboxes.php:27
+msgid "Extra Information"
+msgstr ""
+
+#: includes/custom-metaboxes.php:40
+msgid "Minimun Distance (in km)"
+msgstr ""
+
+#: includes/custom-metaboxes.php:45
+msgid "Maximum Distance (in km)"
+msgstr ""
+
+#: includes/custom-metaboxes.php:50
+msgid "Email Address"
+msgstr ""
+
+#: includes/custom-metaboxes.php:57 includes/custom-metaboxes.php:66
+msgid "Coordinates (in Google Maps)"
+msgstr ""
+
+#: includes/custom-metaboxes.php:57
+msgid "Select coordinates using google maps"
+msgstr ""
+
+#: includes/custom-metaboxes.php:58
+msgid "E.G. 25.7825452,-80.2996705"
+msgstr ""
+
+#: includes/custom-metaboxes.php:67
+msgid "Please configure the APIKey for Google Maps in order to add coordinates"
+msgstr ""
+
+#: includes/custom-post-type.php:24
+msgctxt "Post Type General Name"
+msgid "Locations"
+msgstr ""
+
+#: includes/custom-post-type.php:25
+msgctxt "Post Type Singular Name"
+msgid "Location"
+msgstr ""
+
+#: includes/custom-post-type.php:26 includes/custom-post-type.php:27
+msgid "Locations"
+msgstr ""
+
+#: includes/custom-post-type.php:28
+msgid "Locations Archives"
+msgstr ""
+
+#: includes/custom-post-type.php:29
+msgid "Location Attributes"
+msgstr ""
+
+#: includes/custom-post-type.php:30
+msgid "Location Item:"
+msgstr ""
+
+#: includes/custom-post-type.php:31
+msgid "All Locations"
+msgstr ""
+
+#: includes/custom-post-type.php:32
+msgid "Add New Location"
+msgstr ""
+
+#: includes/custom-post-type.php:33
+msgid "Add New"
+msgstr ""
+
+#: includes/custom-post-type.php:34
+msgid "New Location"
+msgstr ""
+
+#: includes/custom-post-type.php:35
+msgid "Edit Location"
+msgstr ""
+
+#: includes/custom-post-type.php:36
+msgid "Update Location"
+msgstr ""
+
+#: includes/custom-post-type.php:37
+msgid "View Location"
+msgstr ""
+
+#: includes/custom-post-type.php:38
+msgid "View Locations"
+msgstr ""
+
+#: includes/custom-post-type.php:39
+msgid "Search Location"
+msgstr ""
+
+#: includes/custom-post-type.php:40
+msgid "Not found"
+msgstr ""
+
+#: includes/custom-post-type.php:41
+msgid "Not found in Trash"
+msgstr ""
+
+#: includes/custom-post-type.php:42
+msgid "Featured Image"
+msgstr ""
+
+#: includes/custom-post-type.php:43
+msgid "Set featured image"
+msgstr ""
+
+#: includes/custom-post-type.php:44
+msgid "Remove featured image"
+msgstr ""
+
+#: includes/custom-post-type.php:45
+msgid "Use as featured image"
+msgstr ""
+
+#: includes/custom-post-type.php:46
+msgid "Insert into Location"
+msgstr ""
+
+#: includes/custom-post-type.php:47
+msgid "Uploaded to this Location"
+msgstr ""
+
+#: includes/custom-post-type.php:48
+msgid "Locations list"
+msgstr ""
+
+#: includes/custom-post-type.php:49
+msgid "Locations list navigation"
+msgstr ""
+
+#: includes/custom-post-type.php:50
+msgid "Filter Locations list"
+msgstr ""
+
+#: includes/custom-post-type.php:53
+msgid "Location"
+msgstr ""
+
+#: includes/custom-post-type.php:54
+msgid "Locations for this business"
+msgstr ""
+
+#: includes/custom-shipping-method.php:26
+#: includes/custom-shipping-method.php:34
+#: includes/custom-woocommerce-admin.php:24
+msgid "Shipping by Location"
+msgstr ""
+
+#: includes/custom-shipping-method.php:27
+msgid "Delivery by Selected Location"
+msgstr ""
+
+#: includes/custom-shipping-method.php:56
+msgid "Title"
+msgstr ""
+
+#: includes/custom-shipping-method.php:58
+msgid "Title to be display on site"
+msgstr ""
+
+#: includes/custom-shipping-method.php:59
+msgid "Shipping by Location "
+msgstr ""
+
+#: includes/custom-shipping-method.php:63
+msgid "Minimum Cost (2 km)"
+msgstr ""
+
+#: includes/custom-shipping-method.php:65
+msgid "Minimum Cost of shipping"
+msgstr ""
+
+#: includes/custom-woocommerce-admin.php:43
+msgid "Location Settings"
+msgstr ""
+
+#: includes/custom-woocommerce-admin.php:49
+msgid "Google Maps APIKey"
+msgstr ""
+
+#: includes/custom-woocommerce-admin.php:50
+msgid ""
+"Add the Google Maps APIKey in order to use it into this custom shipping "
+"method"
+msgstr ""
+
+#: includes/custom-woocommerce-admin.php:55
+msgid "Business Coordinates"
+msgstr ""
+
+#: includes/custom-woocommerce-admin.php:56
+msgid "Add the coordinates of this business to center this custom map handler"
+msgstr ""
+
+#: includes/custom-woocommerce-public.php:50
+msgid "Select Location"
+msgstr ""
+
+#: includes/custom-woocommerce-public.php:60
+msgid "Select your current position"
+msgstr ""
+
+#: includes/custom-woocommerce-public.php:64
+msgid "Calculate Shipping"
+msgstr ""
+
+#: includes/custom-woocommerce-public.php:222
+msgid "Subsidized shipping fee"
+msgstr ""
+
+#: includes/custom-woocommerce-public.php:224
+msgid "Flat rate shipping fee"
+msgstr ""
+
+#: includes/custom-woocommerce-public.php:296
+msgid "Dirección de Entrega"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Shipping by Location"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://robertochoaweb.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Plugin for Locations and Shipping Overrides"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Robert Ochoa"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://robertochoaweb.com"
+msgstr ""

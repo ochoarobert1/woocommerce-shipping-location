@@ -28,12 +28,20 @@ class WooShipLocation
     {
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'), 99);
         add_action('wp_enqueue_scripts', array($this, 'public_scripts'), 99);
+        add_filter( 'load_textdomain_mofile', array($this, 'plugin_textdomain'), 10, 2 );
+    }
+
+    function plugin_textdomain( $mofile, $domain ) {
+        if ( self::PLUGIN_LANG === $domain && false !== strpos( $mofile, WP_LANG_DIR . '/plugins/' ) ) {
+            $locale = apply_filters( 'plugin_locale', determine_locale(), $domain );
+            $mofile = WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) . '/languages/' . $domain . '-' . $locale . '.mo';
+        }
+        return $mofile;
     }
 
     /**
      * Dump variables
      */
-        
     public function d()
     {
         call_user_func_array('dump', func_get_args());
@@ -43,13 +51,11 @@ class WooShipLocation
     /**
      * Dump variables and die.
      */
-
     public function dd()
     {
         call_user_func_array('dump', func_get_args());
         die();
     }
-
 
     public function admin_scripts()
     {

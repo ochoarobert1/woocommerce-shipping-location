@@ -68,9 +68,14 @@ jQuery(document).on('click', '#select_coordinates', function(e) {
 
         var result = JSON.parse(newRequest.responseText);
         if (result.success == true) {
-            jQuery('#woo-location_new_price').val(parseFloat(result.data));
-            jQuery('#shipping_method_0_woo-location .amount').val(result.data);
+            console.log(result.data);
+            
+            jQuery('#woo-location_new_price').val(parseFloat(result.data.shipping_price));
+            jQuery('#shipping_method_0_woo-location .amount').val(result.data.shipping_price);
+            jQuery('#shipping_method .amount').html(result.data.shipping_price_html);
+            jQuery('.order-total .amount').html(result.data.total_price_html);
             jQuery('#mapsContainer').toggleClass('custom-metaboxes-hidden');
+            jQuery(document.body).trigger("update_checkout");
             jQuery( document.body ).trigger( 'wc_fragment_refresh' );
         } else {
             alert(result.data);

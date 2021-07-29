@@ -18,6 +18,14 @@ class WC_Public_Shipping_Settings extends WooShipLocation
         add_action('woocommerce_after_shipping_rate', array($this, 'custom_button_location_handler'), 999);
         add_action('wp_ajax_calculate_shipping_price', array($this, 'calculate_shipping_price_handler'));
         add_action('wp_ajax_nopriv_calculate_shipping_price', array($this, 'calculate_shipping_price_handler'));
+        add_filter('woocommerce_calculated_total', array($this, 'change_calculated_total'), 10, 2);
+        add_filter('woocommerce_package_rates', array($this, 'woocommerce_cart_shipping_total_filter_callback'), 100, 2);
+
+        add_action('woocommerce_after_order_notes', array($this, 'my_custom_checkout_field' ));
+        add_action('woocommerce_checkout_update_order_meta', array($this, 'my_custom_checkout_field_update_order_meta' ));
+        
+        add_filter('woocommerce_email_headers', array($this, 'custom_cc_email_headers'), 10, 3);
+        add_filter('woocommerce_email_order_meta_fields', array($this, 'custom_woocommerce_email_order_meta_fields'), 10, 3);
     }
 
     public function custom_button_location_handler()
@@ -37,9 +45,11 @@ class WC_Public_Shipping_Settings extends WooShipLocation
         }
 
         if ($found) {
-            ?>
+            if (!is_checkout()) {
+                ?>
 <button id="mapSelector"><span class="dashicons dashicons-location"></span> <?php _e('Select Location', parent::PLUGIN_LANG); ?></button>
 <?php
+            }
         }
     }
 
@@ -58,9 +68,9 @@ class WC_Public_Shipping_Settings extends WooShipLocation
 
     public function calculate_shipping_price_handler()
     {
-        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-            error_reporting( E_ALL );
-            ini_set( 'display_errors', 1 );
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
         }
 
         global $woocommerce;
@@ -86,6 +96,7 @@ class WC_Public_Shipping_Settings extends WooShipLocation
 
         if ($distance >= $short_distance) {
             $short_distance = $distance;
+            $location_id = get_the_ID();
         }
 
         $i++;
@@ -126,16 +137,42 @@ class WC_Public_Shipping_Settings extends WooShipLocation
             $final_price = $shipping_price + ($discont_distance * 0.70);
         }
 
-        $cart = $woocommerce->cart;
-        
-        $cart->shipping_total = $final_price;
-        $total_price = $cart->total;
+        if (! WC()->cart->prices_include_tax) {
+            $total_price = WC()->cart->cart_contents_total;
+        } else {
+            $total_price = WC()->cart->cart_contents_total + WC()->cart->tax_total;
+        }
 
-        $cart->total = $total_price + $final_price;
+        $total = floatval($total_price) + floatval($final_price);
 
-        parent::d($cart);
+        WC()->session->__unset('total');
+        WC()->session->__unset('shipping_total');
+        WC()->session->__unset('coordinates');
+        WC()->session->__unset('location_id');
+
+        WC()->session->set('total', floatval($total));
+        WC()->session->set('shipping_total', floatval($final_price));
+        WC()->session->set('coordinates', $coordinates);
+        WC()->session->set('location_id', $location_id);
+
+        ob_start(); ?>
+<bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo number_format($final_price, 2); ?></bdi>
+<?php
+        $content = ob_get_clean();
+
+        ob_start(); ?>
+<bdi><span class="woocommerce-Price-currencySymbol">$</span><?php echo number_format($total_price + $final_price, 2); ?></bdi>
+<?php
+        $content2 = ob_get_clean();
+
+        $response = array(
+            'shipping_price' => $final_price,
+            'shipping_price_html' => $content,
+            'total_price'    => $total,
+            'total_price_html'    => $content2
+        );
         
-        wp_send_json_success(number_format($final_price, 2), 200);
+        wp_send_json_success($response, 200);
 
         wp_die();
     }
@@ -160,13 +197,106 @@ class WC_Public_Shipping_Settings extends WooShipLocation
                 return $miles;
             }
         }
+    }
 
+    public function change_calculated_total($total, $cart)
+    {
+        if (WC()->session->get('total')) {
+            $total = floatval(WC()->session->get('total'));
+            return number_format(floatval($total), 2, '.', ',');
+        } else {
+            return $total;
+        }
+    }
+
+    public function woocommerce_cart_shipping_total_filter_callback($rates, $package)
+    {
+        if (WC()->session->get('shipping_total')) {
+            $targeted_rate_id = 'woo-location';
+    
+            foreach ($rates as $rate_key => $rate) {
+                if ($targeted_rate_id === $rate_key) {
+                    $rate_cost = $rate->cost;
+
+                    if ($rate_cost < 100) {
+                        $rate_label = __('Subsidized shipping fee');
+                    } elseif ($rate_cost >= 100) {
+                        $rate_label = __('Flat rate shipping fee');
+                    }
+
+                    $total = floatval(WC()->session->get('shipping_total'));
+            
+                    if (isset($rate_label)) {
+                        $rates[$rate_key]->cost = number_format(floatval($total), 2, '.', ',');
+                    }
+                }
+            }
+        }
+        return $rates;
+    }
+
+    public function my_custom_checkout_field($checkout)
+    {
+        woocommerce_form_field('location_id', array(
+            'type'          => 'hidden',
+            'autocomplete'  => 'off',
+            'class'         => array('my-field-class time-takeout-class form-row-wide d-none'),
+        ), WC()->session->get('location_id'));
+
+        woocommerce_form_field('coordinates', array(
+            'type'          => 'hidden',
+            'autocomplete'  => 'off',
+            'class'         => array('my-field-class time-takeout-class form-row-wide d-none'),
+        ), WC()->session->get('coordinates'));
+    }
+
+    /**
+    * Update the order meta with field value
+    */
+
+    public function my_custom_checkout_field_update_order_meta($order_id)
+    {
+        WC()->session->__unset('total');
+        WC()->session->__unset('shipping_total');
+        WC()->session->__unset('coordinates');
+        WC()->session->__unset('location_id');
         
-        /*
-        echo self::distance(32.9697, -96.80322, 29.46786, -98.53506, "M") . " Miles<br>";
-        echo self::distance(32.9697, -96.80322, 29.46786, -98.53506, "K") . " Kilometers<br>";
-        echo self::distance(32.9697, -96.80322, 29.46786, -98.53506, "N") . " Nautical Miles<br>";
-        */
+        if (! empty($_POST['location_id'])) {
+            update_post_meta($order_id, 'location_id', sanitize_text_field($_POST['location_id']));
+        }
+        if (! empty($_POST['coordinates'])) {
+            update_post_meta($order_id, 'coordinates', sanitize_text_field($_POST['coordinates']));
+        }
+    }
+
+    
+    public function custom_cc_email_headers($header, $email_id, $order)
+    {
+        $order_id  = $order->get_id();
+
+        $location_id = get_post_meta($order_id, 'location_id', true);
+        $location = get_post($location_id);
+        $email_address = get_post_meta($location_id, 'email_address', true);
+        $location_name = $location->post_title;
+
+        $formatted_email = utf8_decode($location_name . ' <' . $email_address . '>');
+        $header .= 'Cc: '.$formatted_email .'\r\n';
+
+        return $header;
+    }
+
+    
+
+    public function custom_woocommerce_email_order_meta_fields($fields, $sent_to_admin, $order)
+    {
+        $order_id  = $order->get_id();
+        $google_address = get_post_meta($order_id, 'coordinates', true);
+
+        $fields['coordinates'] = array(
+            'label' => __('Dirección de Entrega'),
+            'value' => '<a href="https://www.google.com.ec/maps/place/' . $google_address . '" target="_blank">Ver en Google Maps</a>',
+        );
+        return $fields;
     }
 }
 
