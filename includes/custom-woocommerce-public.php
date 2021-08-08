@@ -94,7 +94,7 @@ class WC_Public_Shipping_Settings extends WooShipLocation
             $short_distance = $distance;
         }
 
-        if ($distance >= $short_distance) {
+        if ($distance <= $short_distance) {
             $short_distance = $distance;
             $location_id = get_the_ID();
         }
